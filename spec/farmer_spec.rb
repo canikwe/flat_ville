@@ -1,8 +1,3 @@
-# require and load the environment file
-require_relative '../config/environment'
-
-# type 'rspec spec/farmer_spec.rb --format doc' in terminal to run test suite
-
 RSpec.describe Farmer do
   george = Farmer.new('George')
 
@@ -19,6 +14,5 @@ RSpec.describe Farmer do
       expect(george.name).to eq('Fred')
     end
   end
-
 
 end
