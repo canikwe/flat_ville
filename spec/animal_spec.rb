@@ -1,19 +1,19 @@
 RSpec.describe Animal do
-
+  
+  let(:harry) { Farmer.new('Harry') }
+  let(:privot_farm) { Farm.new('Privot Drive', 'dairy', harry) }
+  let(:hedwig) { Animal.new('Hedwig', privot_farm) }
+  
   describe '#initiaize' do
-    privot = Farm.new('Privot Drive')
 
-    it 'is called with a name' do
-      expect do
-        Animal.new('Hedwig', privot)
-      end.to_not raise_error
-
-      expect(Animal.new('Hedwig', privot).name).to eq('Hedwig')
-
+    it 'is initialized with a name' do
+      expect(hedwig.name).to eq('Hedwig')
+      expect(hedwig.class).to be(Animal)
     end
     
-    it 'is called with an instance of a farm' do
-      expect(Animal.new('Hedwig', privot).farm).to be_an_instance_of(Farm)
+    it 'is initialized with a farm' do
+      expect(hedwig.farm).to be_an_instance_of(Farm)
+      expect(hedwig.farm).to be(privot_farm)
     end
   end
 

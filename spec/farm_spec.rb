@@ -4,13 +4,12 @@ RSpec.describe Farm do
   describe '#initialize' do
 
     it "should be instantiated with a name, a type, and an owner." do
-      expect do
-        Farm.new("My Awesome Farm", "dairy", ted)
-      end.to_not raise_error(ArgumentError)
+      expect(Farm.new("My Awesome Farm", "dairy", ted).class).to be(Farm)
     end
   end
 
   describe '#name' do
+
     crook_shack = Farm.new("Crook's Shack", "Animal Farm", ted)
 
     it "Knows it's name" do
