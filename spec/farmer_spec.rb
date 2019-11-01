@@ -1,5 +1,12 @@
 RSpec.describe Farmer do
-  george = Farmer.new('George')
+
+  let(:george) { Farmer.new('George') }
+
+  describe '#initialize' do
+    it 'can instantiate correctly when given a name' do 
+      expect(george.class).to be(Farmer)
+    end
+  end
 
   describe '#name' do
     it "Knows their own name" do

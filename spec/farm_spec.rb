@@ -1,25 +1,45 @@
 RSpec.describe Farm do
-  ted = Farmer.new('Ted')
+  
+  let(:fred) { Farmer.new('Fred') }
+  let(:george) { Farmer.new('George') }
+  let(:awesome_farm) { Farm.new("My Awesome Farm", "dairy", fred) }
+  let(:crook_shack) { Farm.new("Crook's Shack", "Animal Farm", fred) }
 
   describe '#initialize' do
 
-    it "should be instantiated with a name, a type, and an owner." do
-      expect(Farm.new("My Awesome Farm", "dairy", ted).class).to be(Farm)
+    it "can instantiate with a name, a type, and an owner." do
+      expect(awesome_farm.class).to be(Farm)
+      expect(awesome_farm.name).to eq('My Awesome Farm')
+      expect(awesome_farm.type).to eq('dairy')
+      expect(awesome_farm.owner.class).to be(Farmer)
     end
   end
 
   describe '#name' do
 
-    crook_shack = Farm.new("Crook's Shack", "Animal Farm", ted)
-
-    it "Knows it's name" do
+    it "knows it's name" do
       expect(crook_shack.name).to eq("Crook's Shack")
     end
 
-    it "Cannot reset it's own name" do
+    it "cannot change it's own name" do
       expect do
         crook_shack.name = "My Awesome Farm"
       end.to raise_error(NoMethodError)
+    end
+
+  end
+
+  describe '#type' do
+
+    it "cannot change it's type" do
+      expect { awesome_farm.type = 'fruit' }.to raise_error(NoMethodError)
+    end
+  end
+
+  describe '#owner' do
+
+    it "can change it's owner" do
+      expect(awesome_farm.owner = george).to be(george)
     end
   end
 
