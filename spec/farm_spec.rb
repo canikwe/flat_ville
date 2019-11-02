@@ -38,12 +38,20 @@ RSpec.describe Farm do
 
   describe '#type' do
 
+    it "knows its type" do
+      expect(@awesome_farm.type).to eq('dairy')
+    end
+
     it "cannot change it's type" do
       expect { @awesome_farm.type = 'fruit' }.to raise_error(NoMethodError)
     end
   end
 
   describe '#owner' do
+
+    it "knows its owner" do
+      expect(@awesome_farm.owner.name).to eq('Fred')
+    end
 
     it "can change it's owner" do
       expect(@awesome_farm.owner = @george).to be(@george)

@@ -1,6 +1,7 @@
 class Animal
 
-  attr_reader :name, :farm, :species
+  attr_reader :name, :species
+  attr_accessor :farm
   @@all = []
   
   def initialize(name, species, farm)

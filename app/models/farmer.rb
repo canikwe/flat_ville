@@ -18,4 +18,8 @@ class Farmer
     @@all
   end
 
+  def buy_farm(name, type)
+    Farm.new(name, type, self)
+  end
+
 end
