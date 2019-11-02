@@ -58,4 +58,45 @@ RSpec.describe Farm do
     end
   end
 
+  describe '#animals' do
+    
+    it 'returns all animals currently on the farm' do
+      @hedwig = Animal.new('Hedwig', 'owl', @awesome_farm)
+      @pigwidgeon = Animal.new('Pigwidgeon', 'owl', @awesome_farm)
+      @prongs = Animal.new('James', 'human', @crook_shack)
+      
+      expect(@awesome_farm.animals.count).to eq(2)
+      expect(@awesome_farm.animals.include?(@hedwig)).to be(true)
+      expect(@awesome_farm.animals.include?(@prongs)).to be(false)
+    end
+    
+    it 'returns Animal instances, not their attributes' do
+      @crookshanks = Animal.new('Crookshanks', 'surly cat', @awesome_farm)
+
+      expect(@awesome_farm.animals[0]).to be_a(Animal)
+    end
+  end
+
+  describe '#species' do
+
+    it 'returns all the species on currently on the farm' do
+      @hedwig = Animal.new('Hedwig', 'owl', @awesome_farm)
+      @pigwidgeon = Animal.new('Pigwidgeon', 'owl', @awesome_farm)
+      @crookshanks = Animal.new('Crookshanks', 'surly cat', @awesome_farm)
+      @prongs = Animal.new('James', 'human', @crook_shack)
+
+      expect(@awesome_farm.species.include?('owl')).to be(true)
+      expect(@awesome_farm.species.include?('surly cat')).to be(true)
+      expect(@awesome_farm.species.include?('human')).to be(false)
+    end
+
+    it 'does not repeat any species on the fame' do
+      @hedwig = Animal.new('Hedwig', 'owl', @awesome_farm)
+      @pigwidgeon = Animal.new('Pigwidgeon', 'owl', @awesome_farm)
+      @crookshanks = Animal.new('Crookshanks', 'surly cat', @awesome_farm)
+
+      expect(@awesome_farm.species.count).to eq(2)
+    end
+  end
+
 end

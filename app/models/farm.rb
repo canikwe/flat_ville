@@ -15,4 +15,18 @@ class Farm
     @@all
   end
 
+  def animals
+    Animal.all.select do |animal|
+      animal.farm == self
+    end
+  end
+
+  def species
+    all_species = self.animals.map do |animal|
+      animal.species
+    end
+    
+    all_species.uniq
+  end
+
 end
